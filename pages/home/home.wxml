@@ -1,2 +1,37 @@
 <!--pages/home/home.wxml-->
-<text>pages/home/home.wxml</text>
+<view class="card" wx:for="{{matchList}}" wx:key="id">
+
+<!-- 卡片的title -->
+  <view class="card-title">
+    <text class="title-text">🔥 {{item.title}}</text>
+  </view>
+
+<!-- 位置信息 -->
+  <view class="info-line">
+  <van-icon name="location-o" size="30rpx" />
+  <text class="info-text">{{item.location}} · {{item.field}}</text>
+</view>
+
+<!-- 时间信息 -->
+<view class="info-line">
+  <van-icon name="clock-o" size="30rpx" />
+  <text class="info-text">{{item.time}}</text>
+</view>
+
+<!-- 位置空余信息 -->
+<view class="info-line">
+  <van-icon name="friends-o" size="30rpx" />
+  <text class="info-text">{{item.people}}</text>
+</view>
+
+<!-- 卡片发起人信息 -->
+  <view class="info-text">
+    <text>发起人：{{item.user}}</text>
+  </view>
+
+<!-- 卡片备注 -->
+  <view class="card-footer">
+    <text class="note">备注：{{item.note}}</text>
+    <button class="btn-join">📝 立即加入</button>
+  </view>
+</view>

@@ -3,7 +3,8 @@
     "pages/home/home",
     "pages/board/board",
     "pages/deal/deal",
-    "pages/profile/profile"
+    "pages/profile/profile",
+    "pages/publish/publish"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -24,6 +25,12 @@
       "selectedIconPath": ""
     },
     {
+      "pagePath": "pages/publish/publish",
+      "text": "发布",
+      "iconPath": "",
+      "selectedIconPath": ""
+    },
+    {
       "pagePath": "pages/deal/deal",
       "text": "交易",
       "iconPath": "",
@@ -37,7 +44,6 @@
     }]
   },
   
-  "style": "v2",
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"

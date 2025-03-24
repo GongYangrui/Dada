@@ -5,14 +5,37 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    matchList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.setData({
+      matchList: [
+        {
+          id: 1,
+          title: "羽毛球约战（双打）",
+          location: "华中体育中心",
+          field: "3号场地",
+          time: "3/22/2025 19:00-21:00",
+          people: "3 / 4人",
+          user: "小明",
+          note: "只限女生"
+        },
+        {
+          id: 2,
+          title: "羽毛球约战（单打）",
+          location: "奥体中心",
+          field: "5号场地",
+          time: "3/23/2025 14:00-16:00",
+          people: "1 / 2人",
+          user: "阿强",
+          note: "欢迎男生"
+        }
+      ]
+    })
   },
 
   /**

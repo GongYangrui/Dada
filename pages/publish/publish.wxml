@@ -1,0 +1,5 @@
+<!--pages/publish/publish.wxml-->
+<view class="publish-form">
+  <!-- 表单内容将在后续完善 -->
+  <text>发布约球卡片</text>
+</view>

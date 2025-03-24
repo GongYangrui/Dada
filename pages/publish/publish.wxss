@@ -1,0 +1,10 @@
+.publish-form {
+  padding: 20rpx;
+}
+
+.publish-button::before {
+  content: '+';
+  color: #fff;
+  font-size: 60rpx;
+  line-height: 1;
+}
