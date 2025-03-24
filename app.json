@@ -12,38 +12,30 @@
     "navigationBarBackgroundColor": "#ffffff"
   },
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/home/home",
-      "text": "首页",
-      "iconPath": "",
-      "selectedIconPath": ""
-    },
-    {
-      "pagePath": "pages/board/board",
-      "text": "论坛",
-      "iconPath": "",
-      "selectedIconPath": ""
-    },
-    {
-      "pagePath": "pages/publish/publish",
-      "text": "发布",
-      "iconPath": "",
-      "selectedIconPath": ""
-    },
-    {
-      "pagePath": "pages/deal/deal",
-      "text": "交易",
-      "iconPath": "",
-      "selectedIconPath": ""
-    },
-    {
-      "pagePath": "pages/profile/profile",
-      "text": "我的",
-      "iconPath": "",
-      "selectedIconPath": ""
-    }]
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/board/board",
+        "text": "论坛"
+      },
+      {
+        "pagePath": "pages/publish/publish",
+        "iconPath": "/images/icons/publish.png",
+        "selectedIconPath": "/images/icons/publish.png"
+      },
+      {
+        "pagePath": "pages/deal/deal",
+        "text": "交易"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
   },
-  
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"
