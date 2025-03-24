@@ -12,6 +12,11 @@
     "navigationBarBackgroundColor": "#ffffff"
   },
   "tabBar": {
+    "custom": true,
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/home/home",
@@ -20,11 +25,6 @@
       {
         "pagePath": "pages/board/board",
         "text": "论坛"
-      },
-      {
-        "pagePath": "pages/publish/publish",
-        "iconPath": "/images/icons/publish.png",
-        "selectedIconPath": "/images/icons/publish.png"
       },
       {
         "pagePath": "pages/deal/deal",
@@ -38,5 +38,8 @@
   },
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {
+    "van-popup": "@vant/weapp/popup/index"
+  }
 }

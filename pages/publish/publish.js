@@ -1,8 +1,6 @@
+
 // pages/publish/publish.js
 Page({
-  data: {
-    // 页面的初始数据
-  },
 
   onLoad(options) {
     // 页面加载时执行
@@ -14,6 +12,11 @@ Page({
 
   onShow() {
     // 页面显示时执行
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        active: 2 // 对应 tabBar 中的索引
+      });
+    }
   },
 
   onHide() {
@@ -27,5 +30,6 @@ Page({
   // 发布约球卡片
   submitCard() {
     // TODO: 实现发布约球卡片的逻辑
-  }
+  },
+
 })
