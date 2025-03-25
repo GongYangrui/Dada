@@ -1,6 +1,9 @@
-
+import Notify from '@vant/weapp/notify/notify';
 // pages/publish/publish.js
 Page({
+  data: {
+    activeKey: 0,
+  },
 
   onLoad(options) {
     // 页面加载时执行
@@ -28,8 +31,11 @@ Page({
   },
 
   // 发布约球卡片
-  submitCard() {
-    // TODO: 实现发布约球卡片的逻辑
-  },
+  onSidebarChange(event) {
+    this.setData({
+      activeKey: event.detail
+    })
+  }
+
 
 })
