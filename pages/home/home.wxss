@@ -4,6 +4,7 @@
   border: 1px solid #ccc;
   border-radius: 20rpx;
   padding: 20rpx;
+  padding-bottom: 120rpx; /* ✅ 给按钮留空间 */
   margin: 20rpx;
   background-color: #fff;
   box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
@@ -53,3 +54,35 @@
   font-size: 26rpx;
   color: #666;
 }
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-top: 8rpx;
+}
+
+.note-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-right: 12rpx;
+  line-height: 48rpx;
+  white-space: nowrap;
+}
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  flex: 1;
+}
+
+.tag {
+  background-color: #f0f0f0;
+  color: #333;
+  font-size: 24rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 32rpx;
+}
+
+

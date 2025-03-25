@@ -1,1 +1,21 @@
 <!--pages/publish/publish.wxml-->
+<view class="publish-container">
+  <!-- 侧边栏 -->
+  <view class="sidebar">
+    <van-sidebar active-key="{{ activeKey }}" bind:change="onSidebarChange">
+      <van-sidebar-item title="约球" />
+      <van-sidebar-item title="发帖" />
+      <van-sidebar-item title="二手" />
+    </van-sidebar>
+  </view>
+
+  <!-- 主体内容 -->
+  <view class="form-area">
+    <form-activity wx:if="{{activeKey === 0}}" />
+    <form-board wx:if="{{activeKey === 1}}" />
+    <form-deal wx:if="{{activeKey === 2}}" />
+  </view>
+</view>
+
+
+

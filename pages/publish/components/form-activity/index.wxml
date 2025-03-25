@@ -1,0 +1,56 @@
+<view class="form-group">
+  <view class="label">标题</view>
+  <input class="input" placeholder="请输入活动标题" bindinput="onTitleChange" value="{{form.title}}" maxlength="20"/>
+</view>
+
+<view class="form-group">
+  <view class="label">体育馆</view>
+  <picker range="{{venueList}}" range-key="name" bindchange="onVenueChange">
+    <view class="picker">{{selectedVenueIndex === -1 ? '请选择体育馆' : venueList[selectedVenueIndex].name}}</view>
+  </picker>
+</view>
+
+<view class="form-group" wx:if="{{selectedVenueIndex !== -1}}">
+  <view class="label">场地</view>
+  <picker range="{{fieldList}}" bindchange="onFieldChange">
+    <view class="picker">{{fieldList[selectedFieldIndex]}}</view>
+  </picker>
+</view>
+
+<view class="form-group">
+  <view class="label">日期</view>
+  <picker mode="date" bindchange="onDateChange">
+    <view class="picker">{{form.date || '请选择日期'}}</view>
+  </picker>
+</view>
+
+<view class="form-group">
+  <view class="label">时间段</view>
+  <picker range="{{timeSlots}}" bindchange="onTimeChange">
+    <view class="picker">{{form.time || '请选择时间段'}}</view>
+  </picker>
+</view>
+
+<view class="form-group">
+  <view class="label">招募人数</view>
+  <input type="number" class="input" placeholder="请输入人数" bindinput="onPeopleChange" value="{{form.people}}" />
+</view>
+
+<view class="form-group">
+  <view class="label">标签</view>
+  <view class="tags">
+    <block wx:for="{{tags}}" wx:key="index">
+      <view 
+        class="tag {{item.selected ? 'selected' : ''}}" 
+        bindtap="toggleTag" 
+        data-index="{{index}}">
+        {{item.name}}
+      </view>
+    </block>
+  </view>
+</view>
+
+<!-- 提交按钮 -->
+<view class="submit-button">
+  <button type="primary" bindtap="onSubmit">发布</button>
+</view>
