@@ -6,6 +6,10 @@
     "include": []
   },
   "setting": {
+    "urlCheck": true,
+    "useExtendedLib": {
+      "weui": true
+    },
     "coverView": true,
     "es6": true,
     "postcss": true,
