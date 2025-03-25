@@ -27,12 +27,20 @@
       <!-- 地址选择器 -->
       <van-tree-select
         show-toolbar
-        value="{{selectedAddress}}"
-        columns="{{addressColumns}}"
-        bind:change="onAddressChange"
-        bind:confirm="confirmAddress"
+        active-id="{{selectedAddress}}" 
+        items="{{addressColumns}}"  
+        bind:click-item="onAddressChange" 
       />
-      <van-button type="primary" bindtap="confirmAddress">确定</van-button>
+
+      <!-- 楼栋选择区域 -->
+      <view class="building-selection" wx:if="{{showBuildingSelection}}">
+        <scroll-view scroll-y="true" style="height: 300px;">
+          <view class="building-item" wx:for="{{currentBuildings}}" wx:key="index" data-building="{{item}}" bindtap="onBuildingSelect">
+            {{item}}
+          </view>
+        </scroll-view>
+        <van-button type="primary" bindtap="confirmAddress">确定</van-button>
+      </view>
     </view>
   </van-popup>
 </view>
