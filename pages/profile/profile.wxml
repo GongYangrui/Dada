@@ -18,22 +18,21 @@
   <!-- 签名 -->
   <van-cell title="签名" is-link value="{{signature}}" bindtap="editSignature" />
 
-<!-- 地址 -->
-<van-cell title="地址" is-link value="{{address}}" bindtap="editAddress" />
+  <!-- 地址 -->
+  <van-cell title="地址" is-link value="{{address}}" bindtap="editAddress" />
 
-<!-- 地址选择弹出框 -->
-<van-popup show="{{showAddressPopup}}" position="bottom" bind:close="closeAddressPopup">
-  <view class="popup-content">
-    <!-- 地址选择器 -->
-    <van-tree-select
-      show-toolbar
-      value="{{selectedAddress}}"
-      columns="{{addressColumns}}"
-      bind:change="onAddressChange"
-      bind:confirm="confirmAddress"
-    />
-    <van-button type="primary" bindtap="confirmAddress">确定</van-button>
-  </view>
-</van-popup>
-
+  <!-- 地址选择弹出框 -->
+  <van-popup show="{{showAddressPopup}}" position="bottom" bind:close="closeAddressPopup">
+    <view class="popup-content">
+      <!-- 地址选择器 -->
+      <van-tree-select
+        show-toolbar
+        value="{{selectedAddress}}"
+        columns="{{addressColumns}}"
+        bind:change="onAddressChange"
+        bind:confirm="confirmAddress"
+      />
+      <van-button type="primary" bindtap="confirmAddress">确定</van-button>
+    </view>
+  </van-popup>
 </view>

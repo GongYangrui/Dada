@@ -1,1 +1,54 @@
-/* pages/deal/deal.wxss */
+.transaction-container {
+    padding: 20px;
+  }
+  
+  .product-cell {
+    display: flex;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .product-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    margin-right: 20px;
+  }
+  
+  .product-info {
+    flex: 1;
+  }
+  
+  .product-description {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .product-brand-model {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+  }
+  
+  .product-price {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .price-symbol {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e74c3c;
+  }
+  
+  .price-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-left: 5px;
+  }
+  

@@ -1,70 +1,31 @@
-// pages/deal/deal.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      this.getTabBar().setData({
-        active: 3 // 对应 tabBar 中的索引
+    data: {
+      products: [
+        {
+          image: 'https://example.com/image1.jpg',
+          description: '商品1简短描述',
+          brand: '品牌1',
+          model: '型号1',
+          price: '199.99'
+        },
+        {
+          image: 'https://example.com/image2.jpg',
+          description: '商品2简短描述',
+          brand: '品牌2',
+          model: '型号2',
+          price: '299.99'
+        }
+        // 你可以继续添加更多商品
+      ]
+    },
+  
+    viewProductDetails(event) {
+      const productIndex = event.currentTarget.dataset.index;
+      const product = this.data.products[productIndex];
+      // 跳转到商品详情页（例如通过 wx.navigateTo）
+      wx.navigateTo({
+        url: `/pages/product-detail/product-detail?id=${productIndex}`
       });
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
-})
+  });
+  

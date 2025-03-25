@@ -1,2 +1,20 @@
-<!--pages/deal/deal.wxml-->
-<text>pages/deal/deal.wxml</text>
+<view class="transaction-container">
+  <block wx:for="{{products}}" wx:key="index">
+    <van-cell class="product-cell" bindtap="viewProductDetails">
+      <!-- 商品图片 -->
+      <image class="product-image" src="{{item.image}}" />
+      
+      <!-- 商品信息 -->
+      <view class="product-info">
+        <view class="product-description">{{item.description}}</view>
+        <view class="product-brand-model">{{item.brand}} | {{item.model}}</view>
+        
+        <!-- 商品价格 -->
+        <view class="product-price">
+          <text class="price-symbol">¥</text>
+          <text class="price-value">{{item.price}}</text>
+        </view>
+      </view>
+    </van-cell>
+  </block>
+</view>
