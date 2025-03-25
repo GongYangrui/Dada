@@ -47,6 +47,20 @@ Page({
         "showBuildingSelection": false // 是否展示楼栋选择区域
       },
       
+// 修改头像
+changeAvatar() {
+    const that = this;
+    wx.chooseMedia({
+      count: 1,
+      mediaType: ["image"],
+      sourceType: ["album", "camera"],
+      success(res) {
+        that.setData({
+          avatar: res.tempFiles[0].tempFilePath
+        });
+      }
+    });
+  },
 
     // 修改名字
     editName() {
