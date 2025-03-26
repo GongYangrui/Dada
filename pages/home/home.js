@@ -5,8 +5,28 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo: null,
     matchList: []
   },
+
+  onAuthorized(e) {
+    this.setData({
+      userInfo: e.detail
+    });
+  },
+
+  onJoin(e) {
+    const index = e.currentTarget.dataset.index;
+    const post = this.data.matchList[index];
+    const postStr = encodeURIComponent(JSON.stringify(post));
+  
+    wx.navigateTo({
+      url: `/pages/detail/detail?post=${postStr}`
+    });
+  },
+  
+  
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -55,14 +75,15 @@ Page({
       });
     }
 
-    const newPost = wx.getStorageSync('newPost');
-    if (newPost) {
-      // 把新内容插入你的列表
+    const newPost = wx.getStorageSync('newPostData');
+    if (newPost && newPost.title ) {
+      // 合并旧的 posts 和新的发布内容（新发布在最前面）
       this.setData({
         matchList: [newPost, ...this.data.matchList]
       });
-      // 清除缓存，避免重复添加
-      wx.removeStorageSync('newPost');
+
+      // 清空缓存，防止重复加载
+      wx.removeStorageSync('newPostData');
     }
   },
   
