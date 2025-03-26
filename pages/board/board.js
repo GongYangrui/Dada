@@ -71,6 +71,14 @@ Page({
     // 这里可以添加数据请求逻辑
   },
 
+  onShow() {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        active: 1 // 对应 tabBar 中的索引
+      });
+    }
+  },
+
   // 点赞处理
   handleLike(e) {
     const index = e.currentTarget.dataset.index

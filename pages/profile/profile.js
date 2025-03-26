@@ -278,6 +278,14 @@ changeAvatar() {
           wx.showToast({ title: "授权失败", icon: "none" });
         }
       });
-    }
+    },
+
+    onShow() {
+      if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+        this.getTabBar().setData({
+          active: 4 // 对应 tabBar 中的索引
+        });
+      }
+    },
   });
   

@@ -26,6 +26,14 @@ Page({
       wx.navigateTo({
         url: `/pages/product-detail/product-detail?id=${productIndex}`
       });
-    }
+    },
+
+    onShow() {
+      if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+        this.getTabBar().setData({
+          active: 3 // 对应 tabBar 中的索引
+        });
+      }
+    },
   });
   
