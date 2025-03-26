@@ -1,2 +1,44 @@
 <!--pages/board/board.wxml-->
-<text>pages/board/board.wxml</text>
+
+
+<!-- 帖子瀑布流 -->
+<view class="post-container">
+  <block wx:for="{{postList}}" wx:key="index">
+    <view class="post-card">
+      <!-- 封面图 -->
+      <image 
+        class="post-cover" 
+        src="{{item.cover}}" 
+        mode="aspectFill"
+        lazy-load
+      />
+      
+      <!-- 用户信息 -->
+      <view class="user-info">
+        <image class="avatar" src="{{item.avatar}}"/>
+        <text class="username">{{item.username}}</text>
+      </view>
+
+      <!-- 标题和内容 -->
+      <view class="content-box">
+        <text class="title">{{item.title}}</text>
+        <text class="desc">{{item.desc}}</text>
+      </view>
+
+      <!-- 互动栏 -->
+      <view class="action-bar">
+        <view class="action-item">
+          <image src="/images/like.png" class="action-icon"/>
+          <text>{{item.likeCount}}</text>
+        </view>
+        <view class="action-item">
+          <image src="/images/comment.png" class="action-icon"/>
+          <text>{{item.commentCount}}</text>
+        </view>
+        <view class="action-item">
+          <image src="/images/share.png" class="action-icon"/>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
