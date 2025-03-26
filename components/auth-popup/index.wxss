@@ -1,0 +1,32 @@
+.auth-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-dialog {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  width: 80%;
+  text-align: center;
+}
+
+.auth-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.auth-desc {
+  font-size: 26rpx;
+  margin-bottom: 30rpx;
+  color: #666;
+}

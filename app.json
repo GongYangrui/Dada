@@ -4,7 +4,8 @@
     "pages/board/board",
     "pages/deal/deal",
     "pages/profile/profile",
-    "pages/publish/publish"
+    "pages/publish/publish",
+    "pages/detail/detail"
   ],
   "window": {
     "navigationBarTextStyle": "black",

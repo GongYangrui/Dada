@@ -25,7 +25,8 @@ Component({
       { name: '#仅限男生', selected: false },
       { name: '#仅限女生', selected: false },
       { name: '#男女均可', selected: false }
-    ]
+    ],
+    activeKey: 0
   },
 
   methods: {
@@ -91,6 +92,7 @@ Component({
       const selectedTags = tags.filter(tag => tag.selected).map(tag => tag.name);
       const venue = venueList[selectedVenueIndex].name;
       const field = this.data.fieldList[selectedFieldIndex];
+      const userInfo = wx.getStorageSync('userInfo');
 
       const finalData = {
         title,
@@ -99,20 +101,22 @@ Component({
         date,
         time,
         people,
-        tags: selectedTags
+        tags: selectedTags,
+        activeKey: this.data.activeKey,
+        nickname: userInfo ? userInfo.nickName : '匿名用户'
       };
 
       // 提交数据（可以传给父页面或发请求）
       console.log('提交表单数据：', finalData);
       wx.showToast({ title: '发布成功', icon: 'success' });
-
+      
       // 若需要传回父组件或页面，可使用 triggerEvent
-      // this.triggerEvent('submit', finalData);
-        // 写入缓存
-      wx.setStorageSync('newPost', finalData);
+      this.triggerEvent('submit', finalData);
+      //   // 写入缓存
+      // wx.setStorageSync('newPost', finalData);
 
-      // 返回上一页
-      wx.navigateBack();
+      // // 返回上一页
+      // wx.navigateBack();
     }
   }
 });

@@ -1,0 +1,90 @@
+.detail-card {
+  padding: 32rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 12rpx;
+}
+
+.info, .time {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx 16rpx;
+  margin-top: 12rpx;
+}
+
+.tag {
+  display: flex;
+  align-items: center;         /* 垂直居中 */
+  justify-content: center;     /* 水平居中 */
+  padding: 10rpx 20rpx;
+  background-color: #f2f2f2;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  color: #333;
+  min-height: 48rpx;
+}
+
+
+
+
+
+.section-title {
+  margin-top: 30rpx;
+  font-weight: bold;
+}
+
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24rpx;
+  margin-top: 20rpx;
+}
+
+.user-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100rpx;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-color: #eee;
+}
+
+.nick {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  text-align: center;
+  color: #333;
+}
+
+.empty .avatar-placeholder {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-color: #ccc;
+  line-height: 80rpx;
+  text-align: center;
+  color: white;
+  font-size: 26rpx;
+}
+
+.join-btn {
+  margin-top: 40rpx;
+  width: 80%;
+  font-size: 32rpx;
+}
