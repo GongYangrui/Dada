@@ -1,0 +1,39 @@
+<view class="form-group">
+  <text class="label">标题</text>
+  <input
+    class="input"
+    placeholder="请输入标题"
+    maxlength="30"
+    bindinput="onTitleInput"
+    value="{{form.title}}"
+  />
+</view>
+
+<view class="form-group">
+  <text class="label">商品描述</text>
+  <textarea class="textarea" placeholder="一句话描述商品内容" maxlength="100" bindinput="onDescInput" value="{{form.description}}" />
+</view>
+
+<view class="form-group">
+  <text class="label">价格（元）</text>
+  <input class="input" type="number" placeholder="请输入价格" bindinput="onPriceInput" value="{{form.price}}" />
+</view>
+
+<view class="form-group">
+  <text class="label">联系方式</text>
+  <input class="input" placeholder="请输入微信/手机号等联系方式" bindinput="onContactInput" value="{{form.contact}}" />
+</view>
+
+<view class="form-group">
+  <text class="label">上传图片（可选）</text>
+  <view class="image-list">
+    <block wx:for="{{form.images}}" wx:key="index">
+      <image src="{{item}}" class="preview-img" />
+    </block>
+    <view class="upload-btn" bindtap="onChooseImage">+</view>
+  </view>
+</view>
+
+<view class="submit-button">
+  <button type="primary" bindtap="onSubmit">发布</button>
+</view>

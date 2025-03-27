@@ -1,46 +1,27 @@
-<view class="profile-container">
-  <!-- 头像 -->
-  <van-cell center title="头像" is-link bindtap="changeAvatar">
-    <view slot="right-icon">
+<view class="profile-header">
+  <view class="header-bg"></view>
+
+  <view class="profile-info">
+    <view class="avatar-wrapper" bindtap="changeAvatar">
       <image class="avatar" src="{{avatar}}" />
+      <text class="avatar-edit">修改</text>
     </view>
-  </van-cell>
-
-  <!-- 名字 -->
-  <van-cell title="名字" is-link value="{{name}}" bindtap="editName" />
-
-  <!-- 性别 -->
-  <van-cell title="性别" is-link value="{{gender}}" bindtap="selectGender" />
-
-  <!-- 手机号 -->
-  <van-cell title="手机号" value="{{phone}}" is-link bindtap="editPhoneNumber" />
-
-  <!-- 签名 -->
-  <van-cell title="签名" is-link value="{{signature}}" bindtap="editSignature" />
-
-  <!-- 地址 -->
-  <van-cell title="地址" is-link value="{{address}}" bindtap="editAddress" />
-
-  <!-- 地址选择弹出框 -->
-  <van-popup show="{{showAddressPopup}}" position="bottom" bind:close="closeAddressPopup">
-    <view class="popup-content">
-      <!-- 地址选择器 -->
-      <van-tree-select
-        show-toolbar
-        active-id="{{selectedAddress}}" 
-        items="{{addressColumns}}"  
-        bind:click-item="onAddressChange" 
-      />
-
-      <!-- 楼栋选择区域 -->
-      <view class="building-selection" wx:if="{{showBuildingSelection}}">
-        <scroll-view scroll-y="true" style="height: 300px;">
-          <view class="building-item" wx:for="{{currentBuildings}}" wx:key="index" data-building="{{item}}" bindtap="onBuildingSelect">
-            {{item}}
-          </view>
-        </scroll-view>
-        <van-button type="primary" bindtap="confirmAddress">确定</van-button>
-      </view>
-    </view>
-  </van-popup>
+    <text class="nickname" bindtap="editName">{{name}}</text>
+  </view>
 </view>
+
+<view class="profile-list">
+  <van-cell title="性别" is-link value="{{gender}}" bindtap="selectGender" />
+  <van-cell title="手机号" is-link value="{{phone}}" bindtap="editPhone" />
+  <van-cell title="地址" is-link value="{{address}}" bindtap="editAddress" />
+</view>
+
+<!-- 地址选择 -->
+<van-popup show="{{showAddressPicker}}" round position="bottom" bind:close="onClose">
+  <van-cascader
+    wx:if="{{showAddressPicker}}"
+    title="请选择宿舍地址"
+    options="{{options}}"
+    bind:finish="onAddressSelect"
+  />
+</van-popup>

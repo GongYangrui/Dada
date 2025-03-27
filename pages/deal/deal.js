@@ -2,18 +2,11 @@ Page({
     data: {
       products: [
         {
-          image: 'https://example.com/image1.jpg',
-          description: '商品1简短描述',
-          brand: '品牌1',
-          model: '型号1',
-          price: '199.99'
-        },
-        {
-          image: 'https://example.com/image2.jpg',
-          description: '商品2简短描述',
-          brand: '品牌2',
-          model: '型号2',
-          price: '299.99'
+          title: '闲置羽毛球拍转卖',
+          description: '八成新，适合新手练习，两只一起买还有赠品~',
+          price: '88.00',
+          contact: '微信：xxx',
+          image: 'https://xxx.com/img1.jpg'
         }
         // 你可以继续添加更多商品
       ]
@@ -34,6 +27,26 @@ Page({
           active: 3 // 对应 tabBar 中的索引
         });
       }
-    },
+    
+      const newProduct = wx.getStorageSync('newPostData');
+    
+      if (newProduct) {
+        const oldList = this.data.products || [];
+        const updatedList = [newProduct, ...oldList];
+    
+        this.setData({
+          products: updatedList
+        });
+    
+        wx.setStorageSync('dealProductList', updatedList); // 可选：持久化保存
+        wx.removeStorageSync('newPostData'); // 防止重复添加
+      } else {
+        // 如果没新发布内容，可以从本地缓存恢复
+        const cached = wx.getStorageSync('dealProductList') || this.data.products;
+        this.setData({
+          products: cached
+        });
+      }
+    }    
   });
   

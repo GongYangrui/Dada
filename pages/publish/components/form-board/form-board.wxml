@@ -1,0 +1,23 @@
+<view class="form-group">
+  <text class="label">标题（最多20字）</text>
+  <input class="input" maxlength="20" placeholder="请输入帖子标题" bindinput="onTitleInput" value="{{form.title}}" />
+</view>
+
+<view class="form-group">
+  <text class="label">内容</text>
+  <textarea class="textarea" placeholder="请输入帖子内容" bindinput="onDescInput" value="{{form.desc}}" />
+</view>
+
+<view class="form-group">
+  <text class="label">上传图片</text>
+  <view class="image-list">
+    <block wx:for="{{form.images}}" wx:key="index">
+      <image src="{{item}}" class="preview-img" />
+    </block>
+    <view class="upload-btn" bindtap="onChooseImage">+</view>
+  </view>
+</view>
+
+<view class="submit-btn">
+  <button type="primary" bindtap="onSubmit">发布</button>
+</view>

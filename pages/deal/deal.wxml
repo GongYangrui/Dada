@@ -1,20 +1,15 @@
 <view class="transaction-container">
   <block wx:for="{{products}}" wx:key="index">
-    <van-cell class="product-cell" bindtap="viewProductDetails">
+    <view class="product-card" bindtap="viewProductDetails" data-index="{{index}}">
       <!-- 商品图片 -->
-      <image class="product-image" src="{{item.image}}" />
-      
+      <image class="product-image" src="{{item.image}}" mode="aspectFill" />
+
       <!-- 商品信息 -->
       <view class="product-info">
+        <view class="product-title">{{item.title}}</view>
         <view class="product-description">{{item.description}}</view>
-        <view class="product-brand-model">{{item.brand}} | {{item.model}}</view>
-        
-        <!-- 商品价格 -->
-        <view class="product-price">
-          <text class="price-symbol">¥</text>
-          <text class="price-value">{{item.price}}</text>
-        </view>
+        <view class="product-price">¥{{item.price}}</view>
       </view>
-    </van-cell>
+    </view>
   </block>
 </view>

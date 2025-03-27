@@ -1,35 +1,59 @@
-.container {
-    height: 100%; /* 占满整个屏幕的高度 */
-    display: flex; /* 启用 flex 布局 */
-    flex-direction: column; /* 设置垂直排列 */
-    align-items: center; /* 水平居中对齐子元素 */
-    justify-content: center; /* 在垂直方向上居中对齐子元素 */
-    gap: 30rpx; /* 子项之间的间距 */
-    padding: 50rpx 30rpx; /* 设置适当的上下内边距 */
-    box-sizing: border-box; /* 包括 padding 和 border 在内计算元素的总宽度和高度 */
-    background-color: #f5f5f5; /* 背景颜色，增添简洁感 */
-  }
-  
-  van-cell {
-    width: 100%; /* 使单元格宽度占满父容器 */
-    border-radius: 20rpx; /* 圆角效果 */
-    margin-bottom: 20rpx; /* 每个单元格之间的间距 */
-  }
-  
-  .avatar {
-    width: 80rpx;
-    height: 80rpx;
-    border-radius: 50%; /* 使头像变圆 */
-    object-fit: cover; /* 保持图片的比例 */
-  }
-  
-  van-button {
-    margin-top: 40rpx; /* 为按钮增加顶部间距 */
-    width: 80%; /* 按钮宽度适当调整 */
-    background-color: #007aff; /* 按钮背景色 */
-    color: white; /* 按钮文字颜色 */
-    border-radius: 30rpx; /* 按钮圆角 */
-    padding: 20rpx 0; /* 按钮上下内边距 */
-  }
-  
-  
+.profile-header {
+  position: relative;
+  height: 380rpx; /* 增加背景整体高度 */
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.header-bg {
+  background: linear-gradient(135deg, #60a6f5, #5ed4f0);
+  position: absolute;
+  width: 100%;
+  height: 380rpx; /* 同步背景高度 */
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border-bottom-left-radius: 40rpx;
+  border-bottom-right-radius: 40rpx;
+}
+
+.profile-info {
+  padding-top: 120rpx; /* 原来是 100rpx，适配新高度 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.avatar-wrapper {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  border: 6rpx solid white;
+  object-fit: cover;
+}
+
+.avatar-edit {
+  position: absolute;
+  bottom: 6rpx;
+  right: 6rpx;
+  font-size: 20rpx;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 4rpx 10rpx;
+  border-radius: 16rpx;
+  line-height: 1;
+}
+
+.nickname {
+  font-size: 34rpx;
+  font-weight: 600;
+  margin-top: 24rpx;
+}
