@@ -1,11 +1,15 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/login/login",
     "pages/board/board",
     "pages/deal/deal",
     "pages/profile/profile",
     "pages/publish/publish",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/profile-setup/profile-setup",
+    "pages/agreement/user/user",
+    "pages/agreement/privacy/privacy"
   ],
   "window": {
     "navigationBarTextStyle": "black",

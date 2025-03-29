@@ -1,3 +1,4 @@
+const { baseURL } = require('../../../../config');
 Component({
   data: {
     form: {
@@ -93,6 +94,11 @@ Component({
       const venue = venueList[selectedVenueIndex].name;
       const field = this.data.fieldList[selectedFieldIndex];
       const userInfo = wx.getStorageSync('userInfo');
+      const openid = wx.getStorageSync('openid');
+
+      if (!openid) {
+        return wx.showToast({ title: '请先登录', icon: 'none' });
+      }
 
       const finalData = {
         title,
@@ -103,20 +109,50 @@ Component({
         people,
         tags: selectedTags,
         activeKey: this.data.activeKey,
-        nickname: userInfo ? userInfo.nickName : '匿名用户'
+        nickname: userInfo ? userInfo.nickName : '匿名用户',
       };
 
-      // 提交数据（可以传给父页面或发请求）
-      console.log('提交表单数据：', finalData);
-      wx.showToast({ title: '发布成功', icon: 'success' });
-      
-      // 若需要传回父组件或页面，可使用 triggerEvent
-      this.triggerEvent('submit', finalData);
-      //   // 写入缓存
-      // wx.setStorageSync('newPost', finalData);
+      const postData = {
+        openid,
+        nickName: userInfo.nickName,
+        avatar: userInfo.avatar,
+        title,
+        venue,
+        field,
+        date,
+        time,
+        people: Number(people), // 保证为数字类型
+        tags: selectedTags
+      };
 
-      // // 返回上一页
-      // wx.navigateBack();
+      wx.request({
+        url: `${baseURL}/api/publish_activity/`, // ✅ 替换为实际后端地址
+        method: 'POST',
+        data: JSON.stringify(postData),
+        header: {
+          'content-type': 'application/json'
+        },
+        success: res => {
+          if (res.statusCode === 200) {
+            wx.showToast({ title: '发布成功', icon: 'success' });
+            // 可以跳转回首页或清空表单
+            wx.switchTab({ url: "/pages/home/home" });
+          } else {
+            wx.showToast({ title: res.data.error || '发布失败', icon: 'none' });
+          }
+        },
+        fail: err => {
+          console.error('请求失败：', err);
+          wx.showToast({ title: '网络错误', icon: 'none' });
+        }
+      });
+
+      // // 提交数据（可以传给父页面或发请求）
+      // console.log('提交表单数据：', finalData);
+      // wx.showToast({ title: '发布成功', icon: 'success' });
+      
+      // // 若需要传回父组件或页面，可使用 triggerEvent
+      // this.triggerEvent('submit', finalData);
     }
   }
 });

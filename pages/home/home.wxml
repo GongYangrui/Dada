@@ -23,12 +23,12 @@
 <!-- 位置空余信息 -->
 <view class="info-line">
   <van-icon name="friends-o" size="30rpx" />
-  <text class="info-text">{{item.people}}</text>
+  <text class="info-text">{{item.joined.length}} / {{item.people}}</text>
 </view>
 
 <!-- 卡片发起人信息 -->
   <view class="info-text">
-    <text>发起人：{{item.nickname}}</text>
+    <text>发起人：{{item.nickName}}</text>
   </view>
 
   <view class="tag-row">

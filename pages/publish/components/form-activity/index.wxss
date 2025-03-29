@@ -32,11 +32,11 @@
   color: white;
 }
 
-.submit-button {
+/* .submit-button {
   margin-top: 40rpx;
-}
+} */
 
-button {
+.submit-button {
   width: 100%;
   height: 88rpx;
   line-height: 88rpx;

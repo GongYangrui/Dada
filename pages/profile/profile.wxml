@@ -6,13 +6,13 @@
       <image class="avatar" src="{{avatar}}" />
       <text class="avatar-edit">修改</text>
     </view>
-    <text class="nickname" bindtap="editName">{{name}}</text>
+    <text class="nickname" bindtap="editName">{{nickName}}</text>
   </view>
 </view>
 
 <view class="profile-list">
   <van-cell title="性别" is-link value="{{gender}}" bindtap="selectGender" />
-  <van-cell title="手机号" is-link value="{{phone}}" bindtap="editPhone" />
+  <van-cell title="手机号" is-link value="{{phonePrivate}}" bindtap="editPhone" />
   <van-cell title="地址" is-link value="{{address}}" bindtap="editAddress" />
 </view>
 
@@ -23,5 +23,7 @@
     title="请选择宿舍地址"
     options="{{options}}"
     bind:finish="onAddressSelect"
+    bind:close="onClose"
+    closeable
   />
 </van-popup>

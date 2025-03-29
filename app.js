@@ -1,23 +1,32 @@
 // app.js
-// app.js
+const { baseURL } = require('./config');
+
+
 App({
   globalData: {
-    userInfo: null
+    userInfo: {
+      nickName: '',
+      avatar: '',
+      gender: '',
+      phone: '',
+      dorm: '',
+      building: ''
+    },
+    openid: null,
   },
 
   onLaunch() {
-    wx.getUserProfile({
-      desc: '用于展示昵称',
-      success: res => {
-        this.globalData.userInfo = res.userInfo;
-
-        // 也可以同时缓存到本地，防止刷新丢失
-        wx.setStorageSync('userInfo', res.userInfo);
-      },
-      fail: () => {
-        console.warn('用户拒绝授权');
+    const openid = wx.getStorageSync('openid');
+    const userInfo = wx.getStorageSync('userInfo');
+    console.log("缓存的openid", openid);
+    console.log("缓存的用户数据", userInfo);
+  // 用 setTimeout 确保跳转在页面栈准备后进行
+    setTimeout(() => {
+      if (openid && userInfo) {
+        wx.reLaunch({ url: '/pages/home/home' });
+      } else {
+        wx.reLaunch({ url: '/pages/login/login' });
       }
-    });
+    }, 300); // 延迟 300ms 一般比较保险
   }
 });
-

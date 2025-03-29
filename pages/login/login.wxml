@@ -1,0 +1,83 @@
+<view class="login-page">
+  <image class="login-top" src="/images/login-bg.png" mode="widthFix" />
+
+
+  <checkbox-group bindchange="onAgreeChange">
+    <view class="checkbox-row">
+      <checkbox class="checkbox" value="agree" checked="{{isAgree}}" />
+      <view class="agreement-text">
+        我已阅读并同意
+        <text class="link" bindtap="goUserAgreement">《用户协议》</text>
+        和
+        <text class="link" bindtap="goPrivacyPolicy">《隐私政策》</text>
+      </view>
+    </view>
+  </checkbox-group>
+
+  <!-- 快捷授权登录主按钮（页面中） -->
+  <button class="login-btn" bindtap="onQuickLogin" disabled="{{!isAgree}}">快捷授权登录</button>
+
+  <!-- 登录弹出框 -->
+  <van-popup
+  show="{{ show }}"
+  position="bottom"
+  custom-style="height: 42%; border-radius: 32rpx 32rpx 0 0; overflow: hidden; background: #f5faff;"
+  bind:close="onClose"
+>
+    <view class="popup-wrap">
+      <!-- 顶部插图（可换成 logo 或球类插画） -->
+      <image src="/images/avatar-auth.jpg" class="popup-icon" wx:if="{{step !== 3}}"/>
+      <view></view>
+      <!-- 授权阶段内容 -->
+      <view wx:if="{{step === 1}}" class="popup-body">
+        <view class="popup-title">第一步：授权头像昵称</view>
+        <view class="popup-desc">我们将展示你的头像昵称作为身份标识</view>
+        <button class="popup-btn" bindtap="getUserProfileStep">授权头像昵称</button>
+      </view>
+
+
+      <view wx:elif="{{step === 2}}" class="popup-body">
+        <view class="popup-title">第二步：授权手机号</view>
+        <view class="popup-desc">用于绑定账户及后续联系</view>
+        <button
+          class="popup-btn"
+          open-type="getPhoneNumber"
+          bindgetphonenumber="getPhoneStep"
+        >
+          授权手机号
+        </button>
+      </view>
+
+      <!-- 第三步：选择宿舍信息 -->
+      <view wx:if="{{step === 3}}" class="popup-body">
+        <view class="popup-title">第三步：选择宿舍</view>
+        <view class="picker-group">
+          <view class="popup-label">选择宿舍区</view>
+          <picker
+            range="{{dormOptions}}"
+            range-key="name"
+            value="{{selectedDormIndex}}"
+            bindchange="onDormChange"
+          >
+            <view class="picker-box">{{ dormOptions[selectedDormIndex].name}}</view>
+          </picker>
+
+          <view class="popup-label">选择宿舍楼栋</view>
+          <picker
+            range="{{dormOptions[selectedDormIndex].buildings}}"
+            value="{{buildingIndex}}"
+            bindchange="onBuildingChange"
+          >
+            <view class="picker-box">{{ selectedBuilding || '请选择楼栋' }}</view>
+          </picker>
+        </view>
+        <!-- ✅ 添加提交按钮 -->
+        <button class="popup-btn" bindtap="submitDorm">提交宿舍信息</button>
+      </view>
+    </view>
+  </van-popup>
+
+  <view class="hint">温馨提示：小程序默认使用系统头像</view>
+  <van-toast id="van-toast" />
+</view>
+

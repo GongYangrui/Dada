@@ -13,11 +13,6 @@
     </view>
   </view>
 
-
-
-
-
-
   <view class="section-title">参与人员：</view>
   <view class="user-list">
     <!-- 已加入 -->

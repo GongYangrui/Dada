@@ -1,0 +1,13 @@
+<!--pages/profile-setup/profile-setup.wxml-->
+<view class="container">
+  <text class="label">手机号</text>
+  <input placeholder="请输入手机号" bindinput="onPhoneInput" />
+
+  <text class="label">宿舍楼栋</text>
+  <input placeholder="例如：韵苑" bindinput="onDormInput" />
+
+  <text class="label">楼栋号</text>
+  <input placeholder="例如：12栋" bindinput="onBuildingInput" />
+
+  <button type="primary" bindtap="submit">提交</button>
+</view>
