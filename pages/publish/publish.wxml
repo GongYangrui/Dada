@@ -12,9 +12,17 @@
   <!-- 主体内容 -->
   <view class="form-area">
     <!-- pages/publish/publish.wxml -->
-    <form-activity wx:if="{{activeKey === 0}}" bind:submit="onFormSubmit" />
-    <form-board wx:if="{{activeKey === 1}}" bind:submit="onFormSubmit" />
-    <form-deal wx:if="{{activeKey === 2}}" bind:submit="onFormSubmit" />
+    <view wx:if="{{activeKey === 0}}">
+      <form-activity bind:submitRequest="onSubmitActivity" />
+    </view>
+
+    <view wx:if="{{activeKey === 1}}">
+      <form-board bind:submitRequest="onSubmitRequest" />
+    </view>
+
+    <view wx:if="{{activeKey === 2}}">
+      <form-deal bind:submitRequest="onSubmitDeal" />
+    </view>
   </view>
 </view>
 

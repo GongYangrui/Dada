@@ -1,3 +1,5 @@
+const { baseURL } = require('../../../../config');
+
 Component({
   data: {
     form: {
@@ -21,24 +23,45 @@ Component({
     },
 
     onChooseImage() {
+      const that = this; // 🔒 锁定 this 避免作用域丢失
+    
       wx.chooseMedia({
         count: 9,
         mediaType: ['image'],
         sourceType: ['album', 'camera'],
         success: res => {
-          const paths = res.tempFiles.map(f => f.tempFilePath);
-          this.setData({
-            'form.images': this.data.form.images.concat(paths)
+          const tempPaths = res.tempFiles.map(f => f.tempFilePath);
+          if (tempPaths.length === 0) return;
+    
+          wx.showLoading({ title: '上传中...' });
+    
+          that.uploadImages(tempPaths, (uploadedUrls = []) => {
+            wx.hideLoading();
+    
+            if (!Array.isArray(uploadedUrls) || uploadedUrls.length === 0) {
+              wx.showToast({ title: '图片上传失败', icon: 'none' });
+              return;
+            }
+    
+            that.setData({
+              'form.images': [...(that.data.form.images || []), ...uploadedUrls]
+            });
+    
+            wx.showToast({ title: '上传成功', icon: 'success' });
           });
+        },
+        fail: err => {
+          console.error('图片选择失败:', err);
+          wx.showToast({ title: '选择图片失败', icon: 'none' });
         }
       });
     },
+    
+    
 
 
     onSubmit() {
-      //  解构数据
       const { title, desc, images } = this.data.form;
-      // 从本地缓存中读取用户数据
       const userInfo = wx.getStorageSync('userInfo');
     
       if (!title) {
@@ -46,23 +69,57 @@ Component({
         return;
       }
     
-      const finalPost = {
+      const postData = {
         title,
         desc,
-        images, // 保留原图数组（也可仅传封面）
-        cover: images.length > 0 ? images[0] : '/images/default-cover.png',
-        avatar: userInfo?.avatarUrl || '/images/default-avatar.png',
-        username: userInfo?.nickName || '匿名用户',
-        likeCount: 0,
-        commentCount: 0
+        images,
+        nickname: userInfo?.nickName,
+        avatar: userInfo?.avatar
+      };
+      console.log(postData);
+    
+      this.triggerEvent('submitRequest', { form: postData });
+    },
+
+    uploadImages(paths, callback) {
+      const uploaded = [];
+      let index = 0;
+    
+      const uploadNext = () => {
+        if (index >= paths.length) {
+          callback(uploaded); // 所有上传完成
+          return;
+        }
+    
+        wx.uploadFile({
+          url: `${baseURL}/utils/upload_image/`,
+          filePath: paths[index],
+          name: 'image',
+          success: res => {
+            try {
+              const data = JSON.parse(res.data);
+              if (data.url) {
+                uploaded.push(data.url);
+              } else {
+                console.warn('上传成功但无 URL');
+              }
+            } catch (e) {
+              console.error('解析失败:', e);
+            }
+          },
+          fail: err => {
+            console.error('上传失败:', err);
+          },
+          complete: () => {
+            index++;
+            uploadNext(); // 上传下一张
+          }
+        });
       };
     
-      console.log('发帖数据：', finalPost);
-      wx.showToast({ title: '发布成功', icon: 'success' });
-    
-      // 向父页面/页面发送提交事件
-      this.triggerEvent('submit', finalPost);
+      uploadNext(); // 开始第一个
     }
     
-  }
+  },
+  
 });
