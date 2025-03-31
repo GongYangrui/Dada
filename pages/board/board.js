@@ -1,84 +1,34 @@
+// todo: 在这个页面中获取数据库的数据并展示在页面中
+/*
+result = [
+    {
+        'id': post.id,
+        'cover': post.cover,
+        'avatar': post.avatar,
+        'nickname': post.nickname,
+        'title': post.title,
+        'desc': post.content,
+        'likeCount': post.like_count,
+        'commentCount': post.comment_count,
+        'images': post.images,
+    }
+*/
+const { baseURL } = require("../../config");
+
 Page({
   data: {
     postList: [
-      {
-        cover: 'https://tse2-mm.cn.bing.net/th/id/OIP-C.vCJQr-Gl9BW1VBwfGZ9CJgHaEo?rs=1&pid=ImgDetMain',
-        avatar: 'https://example.com/avatar1.jpg',
-        username: '小妾要努力',
-        title: '春季羽毛球穿搭指南',
-        desc: '今年春天最值得入手的5件羽毛球单品...',
-        likeCount: 2356,
-        commentCount: 389,
-        isLiked: false
-      },
-      {
-        cover: 'https://img95.699pic.com/photo/50290/6402.jpg_wh860.jpg',
-        avatar: 'https://example.com/avatar2.jpg',
-        username: '不吃香菜',
-        title: '最有效的五个实战羽毛球技巧',
-        desc: '最有效的五个实战羽毛球技巧如下所示...',
-        likeCount: 256,
-        commentCount: 39,
-        isLiked: false
-      },
-      {
-        cover: 'https://img95.699pic.com/photo/32152/5592.jpg_wh300.jpg!/fh/300/quality/90',
-        avatar: 'https://example.com/avatar2.jpg',
-        username: '不吃香菜',
-        title: '最有效的五个实战羽毛球技巧',
-        desc: '最有效的五个实战羽毛球技巧如下所示...',
-        likeCount: 256,
-        commentCount: 39,
-        isLiked: false
-      },{
-        cover: 'https://wenhui.whb.cn/u/cms/www/201905/01232221ygrs.jpg',
-        avatar: 'https://example.com/avatar2.jpg',
-        username: '不吃香菜',
-        title: '最有效的五个实战羽毛球技巧',
-        desc: '最有效的五个实战羽毛球技巧如下所示...',
-        likeCount: 256,
-        commentCount: 39,
-        isLiked: false
-      },
-      {
-        cover: 'https://img95.699pic.com/element/40194/6514.png_860.png',
-        avatar: 'https://example.com/avatar2.jpg',
-        username: '不吃香菜',
-        title: '最有效的五个实战羽毛球技巧',
-        desc: '最有效的五个实战羽毛球技巧如下所示...',
-        likeCount: 256,
-        commentCount: 39,
-        isLiked: false
-      },
-      {
-        cover: 'https://n.sinaimg.cn/sinakd202162s/600/w1920h1080/20210602/ae52-kquziik4831577.jpg',
-        avatar: 'https://example.com/avatar2.jpg',
-        username: '不吃香菜',
-        title: '最有效的五个实战羽毛球技巧',
-        desc: '最有效的五个实战羽毛球技巧如下所示...',
-        likeCount: 256,
-        commentCount: 39,
-        isLiked: false
-      },
-      {
-        cover: 'https://img95.699pic.com/element/40138/0502.png_860.png',
-        avatar: 'https://example.com/avatar2.jpg',
-        username: '不吃香菜',
-        title: '最有效的五个实战羽毛球技巧',
-        desc: '最有效的五个实战羽毛球技巧如下所示...',
-        likeCount: 256,
-        commentCount: 39,
-        isLiked: false
-      },
-      // 更多测试数据...
     ]
   },
 
   onLoad() {
-    const existing = wx.getStorageSync('boardPostList');
-    if (!existing || existing.length === 0) {
-      wx.setStorageSync('boardPostList', this.data.postList);
-    }
+    this.fetchPosts();
+  },
+
+  onPullDownRefresh() {
+    this.fetchPosts(() => {
+      wx.stopPullDownRefresh(); // 停止刷新动画
+    });
   },
   
 
@@ -89,50 +39,106 @@ Page({
       });
     }
 
-    const newPost = wx.getStorageSync('newPostData');
+    this.fetchPosts();
 
-    if (newPost) {
-      const oldList = wx.getStorageSync('boardPostList') || [];
-      const updatedList = [newPost, ...oldList];
-      wx.setStorageSync('boardPostList', updatedList); // 可选，刷新缓存
+    // const newPost = wx.getStorageSync('newPostData');
+
+    // if (newPost) {
+    //   const oldList = wx.getStorageSync('boardPostList') || [];
+    //   const updatedList = [newPost, ...oldList];
+    //   wx.setStorageSync('boardPostList', updatedList); // 可选，刷新缓存
   
-      this.setData({
-        postList: updatedList
-      });
+    //   this.setData({
+    //     postList: updatedList
+    //   });
   
-      wx.removeStorageSync('newPostData'); // 防止重复加载
-    } else {
-      // 没新数据，正常加载
-      const boardList = wx.getStorageSync('boardPostList') || [];
-      this.setData({
-        postList: boardList
-      });
-    }
+    //   wx.removeStorageSync('newPostData'); // 防止重复加载
+    // } else {
+    //   // 没新数据，正常加载
+    //   const boardList = wx.getStorageSync('boardPostList') || [];
+    //   this.setData({
+    //     postList: boardList
+    //   });
+    // }
+  },
+
+  fetchPosts(callback) {
+    // 接收回调函数，一般在请求完成后触发额外的行为
+    const openid = wx.getStorageSync('openid');
+
+    wx.request({
+      url: `${baseURL}/api/get_all_posts/?openid=${openid}`,
+      method: 'GET',
+      success: res => {
+        const posts = res.data.posts || [];
+        this.setData({ postList: posts });
+
+        if (callback) callback(); // 如果调用这个函数时传入了回调函数，就执行它（比如刷新结束）
+      },
+      fail: err => {
+        wx.showToast({ title: '加载失败', icon: 'none' });
+        console.error('获取帖子失败:', err);
+        if (callback) callback(); // 请求失败也调用回调，避免页面卡住
+      }
+    });
   },
 
   // 点赞处理
   onLike(e) {
     const index = e.currentTarget.dataset.index;
     const list = this.data.postList;
-  
     const item = list[index];
-    if (item.isLiked) {
-      item.likeCount--;
-    } else {
-      item.likeCount++;
+
+    const openid = wx.getStorageSync('openid');
+    if (!openid) {
+      wx.showToast({ title: '请先登录', icon: 'none' });
+      return;
     }
-    item.isLiked = !item.isLiked;
-  
-    // 点赞时加动画 class
+
+    const newIsLiked = !item.isLiked;
+    item.likeCount += newIsLiked ? 1 : -1;
+    item.isLiked = newIsLiked;
     item.animating = true;
+
     this.setData({ postList: list });
+  
   
     // 一段时间后移除动画 class，防止重复加不生效
     setTimeout(() => {
       list[index].animating = false;
       this.setData({ postList: list });
     }, 300);
+
+    wx.request({
+      url: `${baseURL}/api/update_like_count/`,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        openid: openid,
+        post_id: item.id,
+        is_liked: newIsLiked
+      },
+      success: res => {
+        // 如果需要更新 likeCount 以防前端不一致
+        list[index].likeCount = res.data.likeCount || list[index].likeCount;
+        this.setData({ postList: list });
+      },
+      fail: err => {
+        console.error('点赞失败：', err);
+        wx.showToast({ title: '点赞失败', icon: 'none' });
+      }
+    });
+  },
+
+  goToDetail(e) {
+    const postId = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `/pages/postDetail/postDetail?id=${postId}`
+    });
   }
+  
   
   
 

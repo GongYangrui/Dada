@@ -34,8 +34,34 @@ Page({
       count: 1,
       mediaType: ['image'],
       success: res => {
-        this.setData({
-          avatar: res.tempFiles[0].tempFilePath
+        const tempPath = res.tempFiles[0].tempFilePath;
+        this.uploadImages([tempPath], uploaded => {
+          if (uploaded.length > 0) {
+            const avatarUrl = uploaded[0];
+            const openid = wx.getStorageSync('openid');
+  
+            this.setData({ avatar: avatarUrl });
+            this.updateUserInfoField('avatar', avatarUrl);
+  
+            // 同步更新到后端
+            wx.request({
+              url: `${baseURL}/api/login/`,
+              method: 'POST',
+              header: {
+                'content-type': 'application/json'
+              },
+              data: {
+                openid,
+                avatar: avatarUrl
+              },
+              success: () => {
+                wx.showToast({ title: '头像已更新', icon: 'success' });
+              },
+              fail: () => {
+                wx.showToast({ title: '更新失败', icon: 'none' });
+              }
+            });
+          }
         });
       }
     });
@@ -235,6 +261,45 @@ Page({
     const userInfo = wx.getStorageSync('userInfo') || {};
     userInfo[field] = value;
     wx.setStorageSync('userInfo', userInfo);
+  },
+
+  uploadImages(paths, callback) {
+    const uploaded = [];
+    let index = 0;
+  
+    const uploadNext = () => {
+      if (index >= paths.length) {
+        callback(uploaded); // 所有上传完成
+        return;
+      }
+  
+      wx.uploadFile({
+        url: `${baseURL}/utils/upload_image/`,
+        filePath: paths[index],
+        name: 'image',
+        success: res => {
+          try {
+            const data = JSON.parse(res.data);
+            if (data.url) {
+              uploaded.push(data.url);
+            } else {
+              console.warn('上传成功但无 URL');
+            }
+          } catch (e) {
+            console.error('解析失败:', e);
+          }
+        },
+        fail: err => {
+          console.error('上传失败:', err);
+        },
+        complete: () => {
+          index++;
+          uploadNext(); // 上传下一张
+        }
+      });
+    };
+  
+    uploadNext(); // 开始第一个
   }
   
 });

@@ -9,7 +9,9 @@
     "pages/detail/detail",
     "pages/profile-setup/profile-setup",
     "pages/agreement/user/user",
-    "pages/agreement/privacy/privacy"
+    "pages/agreement/privacy/privacy",
+    "pages/postDetail/postDetail",
+    "pages/dealDetail/dealDetail"
   ],
   "window": {
     "navigationBarTextStyle": "black",

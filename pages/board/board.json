@@ -2,5 +2,6 @@
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index"
   },
-  "navigationBarTitleText": "论坛"
+  "navigationBarTitleText": "论坛",
+  "enablePullDownRefresh": true
 }

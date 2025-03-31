@@ -1,0 +1,39 @@
+<view class="page-container">
+
+  <!-- 可滚动内容区域 -->
+  <scroll-view scroll-y="true" class="content-area">
+
+    <!-- 图片轮播 -->
+    <swiper class="carousel" indicator-dots circular>
+      <block wx:for="{{product.images}}" wx:key="index">
+        <swiper-item>
+          <image src="{{item}}" mode="aspectFit" class="carousel-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <!-- 用户信息 -->
+    <view class="user-info">
+      <image src="{{avatar}}" class="avatar" />
+      <text class="nickname">{{nickname}}</text>
+    </view>
+
+    <!-- 帖子标题 -->
+    <view class="title">{{product.title}}</view>
+
+    <!-- 正文内容 -->
+    <view class="desc">{{product.description}}</view>
+
+    <view class="contact-box" bindtap="copyContact">
+      <text class="contact-label">联系方式：</text>
+      <text class="contact-text">{{product.contact}}</text>
+      <text class="copy-tip">点击复制</text>
+    </view>
+  </scroll-view>
+
+  <view wx:if="{{nativeOpenid === product.openid && product.is_active}}" class="sold-btn-box">
+    <view class="sold-hint">若已卖出，请点击下方按钮</view>
+    <button class="sold-btn" bindtap="markAsSold">已卖出</button>
+  </view>
+</view>
+

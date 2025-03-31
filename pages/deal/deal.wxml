@@ -1,8 +1,8 @@
 <view class="transaction-container">
   <block wx:for="{{products}}" wx:key="index">
-    <view class="product-card" bindtap="viewProductDetails" data-index="{{index}}">
+    <view class="product-card" bindtap="viewProductDetails" data-id="{{item.id}}">
       <!-- 商品图片 -->
-      <image class="product-image" src="{{item.image}}" mode="aspectFill" />
+      <image class="product-image" src="{{item.cover}}" mode="aspectFit" />
 
       <!-- 商品信息 -->
       <view class="product-info">

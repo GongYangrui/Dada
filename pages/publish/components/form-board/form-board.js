@@ -76,7 +76,6 @@ Component({
         nickname: userInfo?.nickName,
         avatar: userInfo?.avatar
       };
-      console.log(postData);
     
       this.triggerEvent('submitRequest', { form: postData });
     },

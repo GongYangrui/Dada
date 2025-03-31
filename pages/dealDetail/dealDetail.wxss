@@ -1,0 +1,122 @@
+.page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.content-area {
+  flex: 1;
+}
+
+.carousel {
+  width: 100%;
+  height: 600rpx;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+
+.nickname {
+  font-weight: bold;
+  font-size: 28rpx;
+}
+
+.title {
+  font-size: 34rpx;
+  font-weight: bold;
+  padding: 20rpx;
+}
+
+.desc {
+  font-size: 28rpx;
+  color: #555;
+  padding: 0 20rpx 20rpx 20rpx;
+  line-height: 1.6;
+}
+
+.post-interaction {
+  display: flex;
+  padding: 20rpx;
+  border-top: 1rpx solid #eee;
+  border-bottom: 1rpx solid #eee;
+}
+
+.interaction-item {
+  display: flex;
+  align-items: center;
+  margin-right: 40rpx;
+  color: #666;
+}
+
+
+.contact-box {
+  background-color: #fff;
+  margin: 20rpx 30rpx;
+  padding: 20rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact-label {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #666;
+}
+
+.contact-text {
+  font-size: 28rpx;
+  color: #333;
+  margin-left: 10rpx;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.copy-tip {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 20rpx;
+}
+
+.sold-btn-box {
+  padding: 30rpx;
+}
+
+.sold-btn {
+  background-color: #f44;
+  color: #fff;
+  border-radius: 12rpx;
+  padding: 24rpx 0;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.sold-hint {
+  text-align: center;
+  font-size: 26rpx;
+  color: #888;
+  margin-bottom: 12rpx;
+}
+
+

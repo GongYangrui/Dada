@@ -1,0 +1,87 @@
+<view class="page-container">
+
+  <!-- 可滚动的内容区域 -->
+  <scroll-view scroll-y="true" class="content-area">
+    <swiper class="carousel" indicator-dots circular>
+      <block wx:for="{{post.images}}" wx:key="index">
+        <swiper-item>
+          <image src="{{item}}" mode="aspectFill" class="carousel-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <view class="user-info">
+      <image src="{{post.avatar}}" class="avatar" />
+      <text class="nickname">{{post.nickname}}</text>
+    </view>
+
+    <view class="title">{{post.title}}</view>
+    <view class="desc">{{post.content}}</view>
+
+        <!-- 点赞数 + 评论数展示 -->
+    <view class="post-interaction">
+      <view class="interaction-item" bindtap="onLike">
+        <van-icon name="{{post.is_liked ? 'like' : 'like-o'}}" class="like-icon {{post.is_liked ? 'liked' : ''}}" />
+        <text>{{post.likeCount}}</text>
+      </view>
+      <view class="interaction-item">
+        <van-icon name="chat-o" class="comment-icon" />
+        <text>{{post.commentCount}}</text>
+      </view>
+    </view>
+
+
+    <view class="comment-section">
+      <view class="comment-title">评论</view>
+
+      <!-- 没有评论 -->
+      <block wx:if="{{post.comments.length === 0}}">
+        <view class="comment-item">暂时还没有评论~</view>
+      </block>
+
+      <!-- 顶级评论 -->
+      <block wx:for="{{post.comments}}" wx:key="id">
+        <view class="comment-item" bindtap="startReply" data-id="{{item.id}}" data-nickname="{{item.nickname}}">
+          <view class="comment-header">
+            <image class="comment-avatar" src="{{item.avatar}}" />
+            <view class="comment-meta">
+              <view class="comment-nickname">{{item.nickname}}</view>
+              <view class="comment-time">{{item.created_at}}</view>
+            </view>
+          </view>
+          <view class="comment-content">{{item.content}}</view>
+
+          <!-- 子评论 -->
+          <block wx:if="{{item.replies && item.replies.length > 0}}">
+            <view class="reply-section">
+              <block wx:for="{{item.replies}}" wx:key="id">
+                <view class="reply-item">
+                  <text class="reply-nickname">{{item.nickname}}：</text>
+                  <text class="reply-content">{{item.content}}</text>
+                </view>
+              </block>
+            </view>
+          </block>
+        </view>
+      </block>
+    </view>
+
+
+  </scroll-view>
+
+  <view class="comment-bar">
+    <view class="reply-info" wx:if="{{replyToNickname}}">
+      <text class="reply-text">回复 </text>
+      <text class="reply-nickname">@{{replyToNickname}}</text>
+      <text class="cancel-reply" bindtap="cancelReply">取消</text>
+    </view>
+    <input
+      class="comment-input"
+      placeholder="说点什么吧..."
+      value="{{newComment}}"
+      bindinput="onInput"
+    />
+    <view class="comment-btn" bindtap="submitComment">发送</view>
+  </view>
+
+</view>

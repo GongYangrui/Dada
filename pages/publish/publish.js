@@ -64,6 +64,7 @@ Page({
   },
 
   onSubmitRequest(e) {
+    const openid = wx.getStorageSync('openid')
     const { form } = e.detail;
     const { title, desc, images, nickname, avatar } = form;
 
@@ -79,7 +80,8 @@ Page({
       avatar,
       nickname,
       likeCount: 0,
-      commentCount: 0
+      commentCount: 0,
+      openid
     };
     wx.request({
       url: `${baseURL}/api/create_post/`, // 对应后端 create_post 路由
@@ -104,5 +106,37 @@ Page({
       }
     });
   },
+
+  onSubmitDeal(e) {
+    const { form } = e.detail;
+    const { title, description, price, contact, images, openid, is_active} = form;
+
+    const product = {
+      title,
+      description,
+      price,
+      contact,
+      images, // 全部图片
+      openid,
+      is_active
+    };
+
+    wx.request({
+      url: `${baseURL}/api/create_deal_item/`,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: product,
+      success: res => {
+        wx.showToast({ title: '发布成功', icon: 'success' });
+        wx.reLaunch({ url: '/pages/deal/deal' });
+      },
+      fail: err => {
+        console.error('发布失败', err);
+        wx.showToast({ title: '发布失败', icon: 'none' });
+      }
+    });
+  }
   
 })
