@@ -1,1 +1,63 @@
-/* pages/deal/deal.wxss */
+.transaction-container {
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  height: 200rpx;
+  box-sizing: border-box;
+}
+
+.product-image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 8rpx;
+  background-color: #f8f8f8;
+}
+
+.product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.product-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.4;
+  margin-bottom: 8rpx;
+  max-height: 60rpx; /* 限制高度避免占太多 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product-description {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.3;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.product-price {
+  font-size: 28rpx;
+  color: #ff4d4f;
+  font-weight: 600;
+  margin-top: 8rpx;
+}

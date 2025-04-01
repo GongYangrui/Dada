@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "form-activity": "./components/form-activity/index",
+    "form-board": "./components/form-board/form-board",
+    "form-deal": "./components/form-deal/form-deal",
+    "van-sidebar": "@vant/weapp/sidebar/index",
+    "van-sidebar-item": "@vant/weapp/sidebar-item/index"
+  }
+}

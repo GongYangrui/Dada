@@ -1,0 +1,7 @@
+<view wx:if="{{show}}" class="auth-mask">
+  <view class="auth-dialog">
+    <view class="auth-title">欢迎使用小程序</view>
+    <view class="auth-desc">请先授权以获取昵称头像</view>
+    <button type="primary" open-type="getUserProfile" bindtap="onGetUserProfile">授权登录</button>
+  </view>
+</view>

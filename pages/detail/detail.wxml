@@ -1,0 +1,42 @@
+<view class="detail-card">
+  <view class="title">{{post.title}}</view>
+  <view class="info">{{post.venue}} · {{post.field}}</view>
+  <view class="time">{{post.date}} {{post.time}}</view>
+  <view class="tags" wx:if="{{post.tags && post.tags.length}}">
+    <view
+      wx:for="{{post.tags}}"
+      wx:for-item="tag"
+      wx:key="index"
+      class="tag"
+    >
+      {{tag}}
+    </view>
+  </view>
+
+  <view class="section-title">参与人员：</view>
+  <view class="user-list">
+    <!-- 已加入 -->
+    <block wx:for="{{members}}" wx:key="nickname">
+      <view class="user-avatar">
+        <image src="{{item.avatar}}" class="avatar" />
+        <text class="nick">{{item.nickname}}</text>
+      </view>
+    </block>
+
+    <!-- 空位 -->
+    <block wx:for="{{remain}}" wx:key="index">
+      <view class="user-avatar empty">
+        <view class="avatar-placeholder">空位</view>
+      </view>
+    </block>
+  </view>
+
+  <button
+    class="join-btn"
+    type="primary"
+    bindtap="onJoin"
+    disabled="{{hasJoined || members.length >= maxPeople}}"
+  >
+    {{ hasJoined ? '已加入' : members.length >= maxPeople ? '人数已满' : '我也要加入' }}
+  </button>
+</view>

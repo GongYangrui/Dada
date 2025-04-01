@@ -1,0 +1,62 @@
+.form-group {
+  margin-bottom: 24rpx;
+}
+
+.label {
+  font-weight: bold;
+  margin-bottom: 12rpx;
+}
+
+.input, .picker {
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+}
+
+.image-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: 12rpx;
+}
+
+.preview-img {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 8rpx;
+}
+
+.upload-btn {
+  width: 200rpx;
+  height: 200rpx;
+  background-color: #f5f5f5;
+  color: #999;
+  font-size: 48rpx;
+  line-height: 200rpx;
+  text-align: center;
+  border-radius: 8rpx;
+}
+
+.submit-button {
+  margin-top: 40rpx;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 32rpx;
+}
+
+.textarea {
+  width: 100%;
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  display: block;
+  resize: none; /* 防止手动拉伸 */
+}
+

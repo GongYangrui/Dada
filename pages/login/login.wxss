@@ -1,0 +1,144 @@
+/* 整体页面背景 */
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #e6f3ff; /* 要和图中蓝色一致 */
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.login-top {
+  width: 100%;
+  display: block;
+  margin-bottom: 0;
+  border-radius: 0 0  24rpx 24rpx;  /*👈 圆角衔接下方区域 */
+  overflow: hidden;
+  box-shadow: 0 12rpx 24rpx rgba(0, 0, 0, 0.06); /* 增强层次感 */
+}
+
+
+
+/* 协议勾选区域 */
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  color: #333;
+  margin: 40rpx 0 30rpx;
+  padding: 0 20rpx;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.checkbox {
+  transform: scale(0.75);
+  margin-right: 12rpx;
+}
+
+.link {
+  color: #1c92ff;
+  margin: 0 6rpx;
+  text-decoration: underline;
+}
+
+/* 登录按钮样式 */
+.login-btn {
+  width: 80%;
+  height: 88rpx;
+  font-size: 30rpx;
+  background: linear-gradient(to right, #5ea8ff, #3b7fff);
+  color: white;
+  border-radius: 44rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 6rpx 16rpx rgba(0, 102, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.login-btn:disabled {
+  background: #d8e7f8;
+  color: #aaa;
+  box-shadow: none;
+}
+
+/* 提示文字 */
+.hint {
+  font-size: 24rpx;
+  color: #888;
+  text-align: center;
+}
+
+.popup-wrap {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  padding: 40rpx 30rpx 0;
+}
+
+.popup-icon {
+  width: 197rpx;
+  height: 166rpx;
+  margin-bottom: 30rpx;
+}
+
+.popup-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+.popup-desc {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 40rpx;
+  text-align: center;
+}
+
+.popup-btn {
+  width: 80%;
+  height: 88rpx;
+  font-size: 30rpx;
+  color: white;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  border-radius: 44rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 191, 255, 0.2);
+}
+
+.popup-label {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5rpx;
+}
+
+
+.picker-group {
+  background-color: #fff;
+  padding: 15rpx;
+  margin: 20rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 6rpx 20rpx rgba(0,0,0,0.05);
+}
+
+.picker-box {
+  border: 1rpx solid #ddd;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  font-size: 30rpx;
+  color: #333;
+  background-color: #fefefe;
+  margin-bottom: 25rpx;
+}
+
+

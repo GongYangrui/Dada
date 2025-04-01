@@ -1,5 +1,8 @@
 {
   "usingComponents": {
-    "van-icon": "@vant/weapp/icon/index"
-  }
+    "van-icon": "@vant/weapp/icon/index",
+    "auth-popup": "../../components/auth-popup/index"
+  },
+  "navigationBarTitleText": "首页",
+  "enablePullDownRefresh": true
 }

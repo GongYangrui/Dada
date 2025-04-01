@@ -1,4 +1,10 @@
 {
-  "usingComponents": {
+    "navigationBarTitleText": "个人中心",
+    "usingComponents": {
+      "van-cell": "@vant/weapp/cell/index",
+      "van-field": "@vant/weapp/field/index",
+      "van-popup": "@vant/weapp/popup/index",
+      "van-cascader": "@vant/weapp/cascader/index"
+    }
   }
-}
+  

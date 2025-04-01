@@ -1,1 +1,59 @@
-/* pages/profile/profile.wxss */
+.profile-header {
+  position: relative;
+  height: 380rpx; /* 增加背景整体高度 */
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.header-bg {
+  background: linear-gradient(135deg, #60a6f5, #5ed4f0);
+  position: absolute;
+  width: 100%;
+  height: 380rpx; /* 同步背景高度 */
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border-bottom-left-radius: 40rpx;
+  border-bottom-right-radius: 40rpx;
+}
+
+.profile-info {
+  padding-top: 120rpx; /* 原来是 100rpx，适配新高度 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.avatar-wrapper {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  border: 6rpx solid white;
+  object-fit: cover;
+}
+
+.avatar-edit {
+  position: absolute;
+  bottom: 6rpx;
+  right: 6rpx;
+  font-size: 20rpx;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 4rpx 10rpx;
+  border-radius: 16rpx;
+  line-height: 1;
+}
+
+.nickname {
+  font-size: 34rpx;
+  font-weight: 600;
+  margin-top: 24rpx;
+}

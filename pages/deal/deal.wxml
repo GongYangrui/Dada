@@ -1,2 +1,15 @@
-<!--pages/deal/deal.wxml-->
-<text>pages/deal/deal.wxml</text>
+<view class="transaction-container">
+  <block wx:for="{{products}}" wx:key="index">
+    <view class="product-card" bindtap="viewProductDetails" data-id="{{item.id}}">
+      <!-- 商品图片 -->
+      <image class="product-image" src="{{item.cover}}" mode="aspectFit" />
+
+      <!-- 商品信息 -->
+      <view class="product-info">
+        <view class="product-title">{{item.title}}</view>
+        <view class="product-description">{{item.description}}</view>
+        <view class="product-price">¥{{item.price}}</view>
+      </view>
+    </view>
+  </block>
+</view>

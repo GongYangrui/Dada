@@ -1,2 +1,41 @@
-<!--pages/board/board.wxml-->
-<text>pages/board/board.wxml</text>
+<!-- pages/board/board.wxml -->
+<view class="post-grid">
+  <block wx:for="{{postList}}" wx:key="id">
+    <view class="post-card" bindtap="goToDetail" data-id="{{item.id}}">
+      <!-- 封面图 -->
+      <image class="post-cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
+
+      <!-- 用户信息 -->
+      <view class="user-info">
+        <image class="avatar" src="{{item.avatar}}" />
+        <text class="username">{{item.nickname}}</text>
+      </view>
+
+      <!-- 标题和内容 -->
+      <view class="content-box">
+        <text class="title">{{item.title}}</text>
+        <text class="desc">{{item.desc}}</text>
+      </view>
+
+      <!-- 互动栏 -->
+      <view class="action-bar">
+        <view class="action-item" data-index="{{index}}" bindtap="onLike">
+          <van-icon
+            name="{{item.isLiked ? 'like' : 'like-o'}}"
+            class="like-icon {{item.isLiked ? 'liked' : ''}} {{item.animating ? 'liked-anim' : ''}}"
+          />
+          <text>{{item.likeCount}}</text>
+        </view>
+        <view class="action-item">
+          <van-icon name="comment-o" class="action-icon" />
+          <text>{{item.commentCount}}</text>
+        </view>
+        <view class="action-item">
+          <van-icon name="share-o" class="action-icon" />
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+
+<view style="height: 130rpx;"></view>
