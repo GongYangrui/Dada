@@ -10,6 +10,8 @@
   </view>
 </view>
 
+<view class="my-section-title">我的信息</view>
+
 <view class="profile-list">
   <van-cell title="性别" is-link value="{{gender}}" bindtap="selectGender" />
   <van-cell title="手机号" is-link value="{{phonePrivate}}" bindtap="editPhone" />
@@ -27,3 +29,27 @@
     closeable
   />
 </van-popup>
+
+<view class="my-section-title">我的内容中心</view>
+
+<view class="entry-grid">
+  <view class="entry-card" bindtap="goToMyCreatedActivities">
+    <view class="entry-icon-box"><van-icon name="flag-o" size="32" /></view>
+    <text class="entry-text">发起的约球</text>
+  </view>
+  <view class="entry-card" bindtap="goToMyJoinedActivities">
+    <view class="entry-icon-box"><van-icon name="friends-o" size="32" /></view>
+    <text class="entry-text">加入的约球</text>
+  </view>
+  <view class="entry-card" bindtap="goToMyPosts">
+    <view class="entry-icon-box"><van-icon name="chat-o" size="32" /></view>
+    <text class="entry-text">我的帖子</text>
+  </view>
+  <view class="entry-card" bindtap="goToMyDeals">
+    <view class="entry-icon-box"><van-icon name="cart-o" size="32" /></view>
+    <text class="entry-text">我的交易</text>
+  </view>
+</view>
+<view style="height: 130rpx;"></view>
+
+

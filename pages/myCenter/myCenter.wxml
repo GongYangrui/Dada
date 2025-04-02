@@ -1,0 +1,88 @@
+<view wx:if="{{pageType === 'created' || pageType === 'joined'}}">
+  <!-- 展示我发布的球局 -->
+  <view class="card" wx:for="{{activityList}}" wx:key="id">
+  <!-- 卡片的title -->
+    <view class="card-title">
+      <text class="title-text">{{item.title}}</text>
+    </view>
+  <!-- 位置信息 -->
+    <view class="info-line">
+    <van-icon name="location-o" size="30rpx" />
+    <text class="info-text">{{item.venue}} · {{item.field}}</text>
+  </view>
+  <!-- 时间信息 -->
+  <view class="info-line">
+    <van-icon name="clock-o" size="30rpx" />
+    <text class="info-text">{{item.time}}</text>
+  </view>
+  <!-- 位置空余信息 -->
+  <view class="info-line">
+    <van-icon name="friends-o" size="30rpx" />
+    <text class="info-text">{{item.joined.length}} / {{item.people}}</text>
+  </view>
+  <!-- 卡片发起人信息 -->
+    <view class="info-text">
+      <text>发起人：{{item.nickName}}</text>
+    </view>
+    <view class="tag-row">
+    <text class="note-label">Tag：</text>
+    <view class="tag-container">
+      <block wx:for="{{item.tags}}" wx:key="index">
+        <view class="tag">{{item}}</view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 卡片备注 -->
+    <view class="card-footer">
+      <button bindtap="onJoin" data-index="{{index}}" class="btn-join">立即加入</button>
+    </view>
+  </view>
+
+<view style="height: 130rpx;"></view>
+
+
+
+</view>
+<view wx:elif="{{pageType === 'posts'}}">
+  <!-- pages/board/board.wxml -->
+  <view class="post-grid">
+    <block wx:for="{{postList}}" wx:key="id">
+      <view class="post-card" bindtap="goToDetail" data-id="{{item.id}}">
+        <!-- 封面图 -->
+        <image class="post-cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
+
+        <!-- 用户信息 -->
+        <view class="user-info">
+          <image class="avatar" src="{{item.avatar}}" />
+          <text class="username">{{item.nickname}}</text>
+        </view>
+
+        <!-- 标题和内容 -->
+        <view class="content-box">
+          <text class="title">{{item.title}}</text>
+          <text class="desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view style="height: 130rpx;"></view>
+</view>
+<view wx:elif="{{pageType === 'deals'}}">
+  <view class="transaction-container">
+    <block wx:for="{{products}}" wx:key="index">
+      <view class="product-card" bindtap="viewProductDetails" data-id="{{item.id}}">
+        <!-- 商品图片 -->
+        <image class="product-image" src="{{item.cover}}" mode="aspectFit" />
+
+        <!-- 商品信息 -->
+        <view class="product-info">
+          <view class="product-title">{{item.title}}</view>
+          <view class="product-description">{{item.description}}</view>
+          <view class="product-price">¥{{item.price}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

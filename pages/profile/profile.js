@@ -300,6 +300,31 @@ Page({
     };
   
     uploadNext(); // 开始第一个
-  }
+  },
+
+  goToMyCreatedActivities() {
+    wx.navigateTo({
+      url: '/pages/myCenter/myCenter?type=created'
+    });
+  },
+
+  goToMyJoinedActivities() {
+    wx.navigateTo({
+      url: '/pages/myCenter/myCenter?type=joined'
+    });
+
+  },
+
+  goToMyPosts() {
+    wx.navigateTo({
+      url: '/pages/myCenter/myCenter?type=posts'
+    });
+  },
+
+  goToMyDeals() {
+    wx.navigateTo({
+      url: '/pages/myCenter/myCenter?type=deals'
+    });
+  },
   
 });

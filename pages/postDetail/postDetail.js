@@ -55,7 +55,7 @@ Page({
       success: res => {
         // 如果需要更新 likeCount 以防前端不一致
         this.setData({
-          likeCount: res.data.likeCount || likeCount
+          likeCount: res.data.likeCount || post.likeCount
         });
       },
       fail: err => {

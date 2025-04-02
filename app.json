@@ -11,7 +11,8 @@
     "pages/agreement/user/user",
     "pages/agreement/privacy/privacy",
     "pages/postDetail/postDetail",
-    "pages/dealDetail/dealDetail"
+    "pages/dealDetail/dealDetail",
+    "pages/myCenter/myCenter"
   ],
   "window": {
     "navigationBarTextStyle": "black",
